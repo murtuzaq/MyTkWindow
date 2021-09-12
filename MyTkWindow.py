@@ -1,4 +1,5 @@
 import tkinter as tk
+import MyLeftPanel
 
 class MyTkWindow:
     def __init__(self):
@@ -17,6 +18,7 @@ class MyTkWindow:
     def __draw_left_frame(self):
         self.left_frame = tk.Frame(self.root, width = 200, height = 600)
         self.left_frame.grid(row = 0, column = 0, padx = 10, pady = 2)
+        MyLeftPanel.MyLeftPanel(self.root, self.left_frame)
 
     def __draw_right_frame(self):
         self.right_frame = tk.Frame(self.root, width=200, height=300)
