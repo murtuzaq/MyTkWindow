@@ -1,9 +1,9 @@
 import tkinter as tk
 import Colorbutton
 
+
 class MyRightPanel:
-    def __init__(self, root, frame):
-        self.root = root
+    def __init__(self, frame):
         self.frame = frame
         self.__draw_color_canvas()
         self.__draw_button_frame()
