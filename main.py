@@ -1,7 +1,6 @@
 import MyTkWindow
 
 def main():
-    print("Hello World")
     my_window = MyTkWindow.MyTkWindow()
     my_window.start()
 
