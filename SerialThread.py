@@ -17,12 +17,6 @@ class SerialThread(threading.Thread):
         time.sleep(0.2)
         count = 0
         while True:
-            time.sleep(0.1)
-            send_msg = "testing - queue put #" + str(count)
-            # print(send_msg)
-            self.queue.put(send_msg)
-            count += 1
-            # if s.inWaiting():
-            #    text = s.readline(s.inWaiting())
-            #    #print(text)
-            #    self.queue.put(text)
+            if s.inWaiting():
+                text = s.readline(s.inWaiting())
+                self.queue.put(text)
