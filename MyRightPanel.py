@@ -22,8 +22,12 @@ class MyRightPanel:
 
     def __draw_color_log_text_box(self):
         self.colorLog = tk.Text(self.frame, width=30, height=10, takefocus=0)
+        self.visual_scroll_bar = tk.Scrollbar(self.frame, orient="vertical", command=self.colorLog.yview)
+        self.colorLog.configure(yscrollcommand=self.visual_scroll_bar.set)
+        self.visual_scroll_bar.grid(row=3, column=1)
         self.colorLog.grid(row=3, column=0, padx=10, pady=2)
 
     def make_circle(self, color):
         self.circleCanvas.create_oval(20, 20, 80, 80, width=0, fill=color)
-        self.colorLog.insert(0.0, color.capitalize() + "\n")
+        self.colorLog.insert("end", color.capitalize() + "\n")
+        self.colorLog.see("end")

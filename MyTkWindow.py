@@ -32,10 +32,11 @@ class MyTkWindow:
     def __draw_right_frame(self):
         right_frame = tk.Frame(self.root, width=200, height=300)
         right_frame.grid(row=0, column=1, padx=10, pady=2)
-        MyRightPanel.MyRightPanel(right_frame)
+        self.right_panel = MyRightPanel.MyRightPanel(right_frame)
 
     def process_serial(self):
         while self.queue.qsize():
             pull_from_queue = self.queue.get()
-            print(pull_from_queue)
-        self.root.after(1000, self.process_serial)
+            self.right_panel.colorLog.insert("end", pull_from_queue)
+            self.right_panel.colorLog.see("end")
+        self.root.after(100, self.process_serial)
