@@ -4,6 +4,7 @@ import MyRightPanel
 import queue
 import SerialThread
 
+
 class MyTkWindow:
     def __init__(self):
         self.root = tk.Tk()
@@ -12,11 +13,11 @@ class MyTkWindow:
         self.__draw_right_frame()
 
         self.queue = queue.Queue()
-        serial_thread = SerialThread.SerialThread(self.queue)
-        serial_thread.start()
-
+        self.serial_thread = SerialThread.SerialThread(self.queue)
 
     def start(self):
+        self.serial_thread.start()
+        self.process_serial()
         self.root.mainloop()
 
     def __draw_base_window(self):
@@ -32,3 +33,9 @@ class MyTkWindow:
         right_frame = tk.Frame(self.root, width=200, height=300)
         right_frame.grid(row=0, column=1, padx=10, pady=2)
         MyRightPanel.MyRightPanel(right_frame)
+
+    def process_serial(self):
+        while self.queue.qsize():
+            pull_from_queue = self.queue.get()
+            print(pull_from_queue)
+        self.root.after(1000, self.process_serial)
